@@ -1,32 +1,26 @@
-name: Cypress Tests
+name: Run Cypress Tests
 on: [push]
 jobs:
-  cypress-run:
+  install:
     runs-on: ubuntu-latest
     strategy:
-      fail-fast: false # https://github.com/cypress-io/github-action/issues/48
+      fail-fast: false
       matrix:
-        node-version: [16.x]
         containers: [1, 2, 3]
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'npm'
-      - name: Install Dependencies
-        run: npm i
-      - name: Cypress run
-        uses: cypress-io/github-action@v4.2.0
+        uses: actions/checkout@v2
+      - name: Install modules
+        run: npm ci
+      - name: Cypress
+        uses: cypress-io/github-action@v3
         with:
           browser: chrome
-          install: false
           headless: true
           record: true
-          start: npm start
-          wait-on: 'http://localhost:3000' # Waits for above
+          start: npm run dev
+          wait-on: http://localhost:5173
           parallel: true
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
