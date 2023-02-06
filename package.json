@@ -29,8 +29,9 @@
     "websocket-extensions": ">=0.1.4"
   },
   "scripts": {
-    "cy": "cypress run",
+    "cy": "cypress run --record",
     "cy:open": "cypress open",
+    "cypress:run": "cypress run --record",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
