@@ -9,7 +9,7 @@ jobs:
     strategy:
       fail-fast: false # https://github.com/cypress-io/github-action/issues/48
       matrix:
-        node-version: [14.x]
+        node-version: [16.x]
         containers: [1, 2] # Uses 2 parallel instances
     steps:
       - name: Checkout
