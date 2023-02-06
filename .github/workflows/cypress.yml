@@ -23,6 +23,7 @@ jobs:
           install: false
           start: npm start
           wait-on: 'http://localhost:3000' # Waits for above
+          run: npm run cy --record --key $CYPRESS_RECORD_KEY
           record: true
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
