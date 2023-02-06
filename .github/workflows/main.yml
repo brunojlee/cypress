@@ -13,7 +13,7 @@ jobs:
       - name: Install modules
         run: yarn
       - name: Cypress
-        uses: cypress-io/github-action@v3
+        uses: cypress-io/github-action@v5.2.0
         with:
           browser: chrome
           headless: true
